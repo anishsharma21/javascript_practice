@@ -96,5 +96,6 @@ function createAccumulator(startingValue: number = 0): Accumulator {
     },
   };
 }
+
 let accumulator = createAccumulator();
 accumulator.read().read();
