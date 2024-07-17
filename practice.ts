@@ -64,8 +64,6 @@ function createCalculator(a: number, b: number): Calculator {
 }
 
 let calculator = createCalculator(2, 3);
-console.log(calculator.sum());
-console.log(calculator.mul());
 
 let ladder = {
   step: 0,
@@ -83,3 +81,20 @@ let ladder = {
     console.log(this.step);
   },
 };
+
+interface Accumulator {
+  value: number;
+  read: () => Accumulator;
+}
+
+function createAccumulator(startingValue: number = 0): Accumulator {
+  return {
+    value: startingValue,
+    read: function () {
+      console.log(this.value++);
+      return this;
+    },
+  };
+}
+let accumulator = createAccumulator();
+accumulator.read().read();
