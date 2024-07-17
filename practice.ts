@@ -42,3 +42,26 @@ let user: User = {
     console.log("Hello");
   },
 };
+
+type Calculator = {
+  read: () => void;
+  sum: () => number;
+  mul: () => number;
+};
+
+let calculator: Calculator = {
+  read() {
+    this.a = +(prompt("a?", "0") || "0");
+    this.b = +(prompt("b?", "0") || "0");
+  },
+  sum() {
+    return this.a + this.b;
+  },
+  mul() {
+    return this.a * this.b;
+  },
+};
+
+calculator.read();
+alert(calculator.sum());
+alert(calculator.mul());
