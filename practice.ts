@@ -43,25 +43,43 @@ let user: User = {
   },
 };
 
-type Calculator = {
-  read: () => void;
+interface Calculator {
+  a: number;
+  b: number;
   sum: () => number;
   mul: () => number;
-};
+}
 
-let calculator: Calculator = {
-  read() {
-    this.a = +(prompt("a?", "0") || "0");
-    this.b = +(prompt("b?", "0") || "0");
+function createCalculator(a: number, b: number): Calculator {
+  return {
+    a,
+    b,
+    sum: function () {
+      return this.a + this.b;
+    },
+    mul: function () {
+      return this.a * this.b;
+    },
+  };
+}
+
+let calculator = createCalculator(2, 3);
+console.log(calculator.sum());
+console.log(calculator.mul());
+
+let ladder = {
+  step: 0,
+  up() {
+    this.step++;
+    this.showStep();
+    return this;
   },
-  sum() {
-    return this.a + this.b;
+  down() {
+    this.step--;
+    this.showStep();
+    return this;
   },
-  mul() {
-    return this.a * this.b;
+  showStep: function () {
+    console.log(this.step);
   },
 };
-
-calculator.read();
-alert(calculator.sum());
-alert(calculator.mul());
