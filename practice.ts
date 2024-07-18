@@ -54,6 +54,7 @@ function createCalculator(a: number, b: number): Calculator {
   return {
     a,
     b,
+
     sum: function () {
       return this.a + this.b;
     },
@@ -62,7 +63,6 @@ function createCalculator(a: number, b: number): Calculator {
     },
   };
 }
-
 let calculator = createCalculator(2, 3);
 
 let ladder = {
@@ -98,4 +98,37 @@ function createAccumulator(startingValue: number = 0): Accumulator {
 }
 
 let accumulator = createAccumulator();
-accumulator.read().read();
+
+let myString: string = "as sly as a fox, as strong as an ox";
+let target: string = "as";
+let pos: number = -1;
+while ((pos = myString.indexOf(target, pos + 1)) !== -1) {
+  console.log(pos);
+}
+
+let str: string = "Widget with id";
+if (str.indexOf("id") !== -1) {
+  console.log("We found it!");
+}
+
+str = "stringify";
+/* console.log(str.slice(0));
+console.log(str.slice(0) === str);
+
+console.log("Z".codePointAt(0));
+console.log("z".codePointAt(0));
+console.log("ê".codePointAt(0)); */
+
+str = "";
+for (let i: number = 65; i < 220; i++) {
+  str += String.fromCodePoint(i);
+}
+// console.log(str);
+
+// console.log("Özerich".localeCompare("Zealand"));
+
+export default function ucFirst(str: string): string {
+  return str.at(0)?.toUpperCase() + str.slice(1);
+}
+
+console.log(ucFirst("hello"));
