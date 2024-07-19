@@ -198,4 +198,32 @@ let lengths: Array<number> = characters.map((character) => character.length);
 
 let arrNum: Array<number> = [1, 2, 3, 4, 5];
 let sum: number = arrNum.reduce((acc, cur) => (acc += cur), 0);
-console.log(sum);
+// console.log(sum);
+
+function merge_sort(arr: Array<number>): Array<number> {
+  if (arr.length <= 1) {
+    return arr;
+  }
+  let mid: number = Math.floor(arr.length / 2);
+  let left: Array<number> = merge_sort(arr.slice(0, mid));
+  let right: Array<number> = merge_sort(arr.slice(mid));
+  return merge(left, right);
+}
+
+function merge(left: Array<number>, right: Array<number>): Array<number> {
+  let i: number = 0,
+    j: number = 0;
+  let sorted: Array<number> = [];
+  while (i < left.length && j < right.length) {
+    if (left[i] < right[j]) {
+      sorted.push(left[i++]);
+    } else {
+      sorted.push(right[j++]);
+    }
+  }
+  return sorted.concat(left.slice(i)).concat(right.slice(j));
+}
+
+let unsorted_arr: Array<number> = [4, 1, 3, 2];
+let sorted_arr = merge_sort(unsorted_arr);
+console.log(sorted_arr);
