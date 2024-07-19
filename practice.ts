@@ -226,4 +226,25 @@ function merge(left: Array<number>, right: Array<number>): Array<number> {
 
 let unsorted_arr: Array<number> = [4, 1, 3, 2];
 let sorted_arr = merge_sort(unsorted_arr);
-console.log(sorted_arr);
+// console.log(sorted_arr);
+
+type Salaries = {
+  [key: string]: number;
+};
+
+function sumSalaries(salaries: Salaries): number {
+  return Object.values(salaries).reduce((acc, cur) => acc + cur);
+}
+
+function countSalaries(salaries: Salaries): number {
+  return Object.entries(salaries).reduce((acc) => ++acc, 0);
+}
+
+let salaries: Salaries = {
+  John: 100,
+  Pete: 300,
+  Mary: 150,
+};
+
+console.log(sumSalaries(salaries));
+console.log(countSalaries(salaries));
