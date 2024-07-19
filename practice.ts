@@ -232,8 +232,8 @@ type Salaries = {
   [key: string]: number;
 };
 
-function sumSalaries(salaries: Salaries): number {
-  return Object.values(salaries).reduce((acc, cur) => acc + cur);
+function sumSalaries(salariesData: Salaries): number {
+  return Object.values(salariesData).reduce((acc, cur) => acc + cur);
 }
 
 function countSalaries(salaries: Salaries): number {
@@ -246,5 +246,63 @@ let salaries: Salaries = {
   Mary: 150,
 };
 
-console.log(sumSalaries(salaries));
-console.log(countSalaries(salaries));
+console.log(topsalaries(salaries));
+
+function topsalaries(salaries: Salaries): string {
+  let name: string = "";
+  let topsalaries: number = 0;
+  for (let [key, value] of Object.entries(salaries)) {
+    if (value > topsalaries) {
+      name = key;
+      topsalaries = value;
+    }
+  }
+  return name;
+}
+
+/* console.log(sumSalaries(salaries));
+console.log(countSalaries(salaries)); */
+
+type Options = {
+  title: string;
+  width: number;
+  height: number;
+};
+
+let options: Options = {
+  title: "Menu",
+  width: 100,
+  height: 200,
+};
+
+let { title, width, height } = options;
+let { title: t, width: w, height: h } = options;
+let { title: ttl, ...rest } = options;
+
+/* console.log(title, width, height);
+console.log(t, w, h);
+console.log(ttl, rest); */
+
+type Person = {
+  name: string;
+  years: number;
+  isAdmin?: boolean;
+};
+
+let person: Person = {
+  name: "John",
+  years: 30,
+};
+
+let { name, years: age, isAdmin = false } = person;
+
+// console.log(Object.entries(salaries));
+
+let now: Date = new Date();
+console.log(now);
+
+let Jan01_1970 = new Date(0);
+console.log(Jan01_1970);
+
+let Jan02_1970 = new Date(24 * 3600 * 1000);
+console.log(Jan02_1970);
