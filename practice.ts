@@ -246,7 +246,7 @@ let salaries: Salaries = {
   Mary: 150,
 };
 
-console.log(topsalaries(salaries));
+// console.log(topsalaries(salaries));
 
 function topsalaries(salaries: Salaries): string {
   let name: string = "";
@@ -299,10 +299,35 @@ let { name, years: age, isAdmin = false } = person;
 // console.log(Object.entries(salaries));
 
 let now: Date = new Date();
-console.log(now);
+// console.log(now);
 
 let Jan01_1970 = new Date(0);
-console.log(Jan01_1970);
+// console.log(Jan01_1970);
 
 let Jan02_1970 = new Date(24 * 3600 * 1000);
-console.log(Jan02_1970);
+// console.log(Jan02_1970);
+
+let date = new Date();
+/* console.log(date.getDate());
+console.log(date.getDay());
+console.log(date.getFullYear()); */
+
+function diffSubtract(date1: number, date2: number): number {
+  return date2 - date1;
+}
+
+function diffGetTime(date1: Date, date2: Date): number {
+  return date2.getTime() - date1.getTime();
+}
+
+function bench(f: Function): number {
+  let date1 = new Date(0);
+  let date2 = new Date();
+
+  let start = Date.now();
+  for (let i = 0; i < 1000000; i++) f(date1, date2);
+  return Date.now() - start;
+}
+
+console.log(`Time of diffSubsctract: ${bench(diffSubtract)}ms`);
+console.log(`Time of diffGetTime: ${bench(diffGetTime)}ms`);
