@@ -329,5 +329,34 @@ function bench(f: Function): number {
   return Date.now() - start;
 }
 
-console.log(`Time of diffSubsctract: ${bench(diffSubtract)}ms`);
-console.log(`Time of diffGetTime: ${bench(diffGetTime)}ms`);
+/* bench(diffSubtract);
+bench(diffGetTime); */
+
+let time1: number = 0;
+let time2: number = 0;
+
+let times1: Array<number> = [];
+let times2: Array<number> = [];
+
+/* for (let i = 0; i < 10; i++) {
+  let t1: number = bench(diffSubtract);
+  let t2: number = bench(diffGetTime);
+  (time1 += t1), (time2 += t2);
+  times1.push(t1), times2.push(t2);
+} */
+
+/* console.log(times1);
+console.log(times2);
+console.log(times1.reduce((sum, cur) => sum + cur) / times1.length);
+console.log(times2.reduce((sum, cur) => sum + cur) / times2.length); */
+
+let Feb20_2012 = Date.parse("2012-02-20T03:03:12");
+// console.log(Feb20_2012);
+
+function getWeekDay(date: Date): string {
+  let days: Array<string> = ["SU", "MO", "TU", "WE", "TH", "FR", "SA"];
+  return days[date.getDay()];
+}
+
+let date3 = new Date(2012, 0, 3);
+// console.log(getWeekDay(date3));
