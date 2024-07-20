@@ -197,7 +197,7 @@ let lengths: Array<number> = characters.map((character) => character.length);
 // console.log(characters, "\n" + lengths);
 
 let arrNum: Array<number> = [1, 2, 3, 4, 5];
-let sum: number = arrNum.reduce((acc, cur) => (acc += cur), 0);
+// let sum: number = arrNum.reduce((acc, cur) => (acc += cur), 0);
 // console.log(sum);
 
 function merge_sort(arr: Array<number>): Array<number> {
@@ -435,3 +435,62 @@ let end2: number = Date.now(); */
 
 // console.log(`${end1 - start1}ms`);
 // console.log(`${end2 - start2}ms`); // this one is faster
+
+let arr = [1, 2, 3];
+let arrCopy = [...arr];
+/* console.log(arr === arrCopy);
+console.log(arr == arrCopy);
+console.log(JSON.stringify(arr) === JSON.stringify(arrCopy));
+console.log(JSON.stringify(arr) == JSON.stringify(arrCopy)); */
+
+let obj: LooseObject = { a: 1, b: 2, c: 3 };
+let objCopy = { ...obj };
+obj.d = 4;
+
+// console.log(JSON.stringify(obj));
+// console.log(JSON.stringify(objCopy));
+
+////////////////////////////////
+/* variable scope and closure */
+////////////////////////////////
+
+function makeCounter(): Function {
+  let count: number = 0;
+  return () => count++;
+}
+
+let counter: Function = makeCounter();
+// console.log(counter());
+// console.log(counter());
+
+function makeWorkerGlobal(): Function {
+  return () => console.log(workerName);
+}
+
+let workerName: string = "John";
+
+let worker: Function = makeWorkerGlobal();
+// worker();
+
+function makeWorkerLocal(): Function {
+  let workerName2: string = "Alex";
+  return () => console.log(workerName2);
+}
+
+let workerName2: string = "Alexa";
+let worker2: Function = makeWorkerLocal();
+// worker2();
+
+function sum(a: number): Function {
+  return (b: number): number => a + b;
+}
+
+// console.log(sum(1)(2));
+// console.log(sum(5)(-1));
+
+function inBetween(low: number, high: number): Function {
+  return (value: number) => value >= low && value <= high;
+}
+
+arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+console.log(arr.filter((value) => inBetween(3, 6)(value)));
