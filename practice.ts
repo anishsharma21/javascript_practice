@@ -401,3 +401,37 @@ let meetup2 = JSON.parse(string2, function (key, value) {
 });
 
 // console.log(meetup2.date.getDate());
+
+function sumAll(...args: Array<number>): number {
+  let sum = 0;
+  for (let arg of args) sum += arg;
+  return sum;
+}
+
+// console.log(sumAll(1, 2, 3, 4, 5, 6));
+
+let numbers2: Array<number> = [1, 2, 3, 4, 5];
+// console.log(Math.max(...numbers2));
+// console.log(...numbers2);
+
+let numbers3: Array<number> = [3, 2, 4, 4, 5, 12];
+numbers2 = [...numbers2, ...numbers3];
+// console.log(numbers2);
+// console.log(numbers2.length);
+
+let word: string = "hello";
+
+/* let start1: number = Date.now();
+for (let i = 0; i < 1_000_000_00; i++) {
+  let strArr: Array<string> = [...word];
+}
+let end1: number = Date.now();
+
+let start2: number = Date.now();
+for (let i = 0; i < 1_000_000_00; i++) {
+  let strArr: Array<string> = Array.from(word);
+}
+let end2: number = Date.now(); */
+
+// console.log(`${end1 - start1}ms`);
+// console.log(`${end2 - start2}ms`); // this one is faster
