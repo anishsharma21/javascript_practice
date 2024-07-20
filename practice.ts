@@ -360,3 +360,44 @@ function getWeekDay(date: Date): string {
 
 let date3 = new Date(2012, 0, 3);
 // console.log(getWeekDay(date3));
+
+let student = {
+  name: "Anish",
+  age: 23,
+  isAdmin: false,
+  courses: ["html", "css", "python"],
+  spouse: null,
+};
+
+let json: string = JSON.stringify(student);
+// console.log(json);
+
+interface LooseObject {
+  [key: string]: any;
+}
+
+let room: LooseObject = {
+  number: 23,
+};
+
+let meetup: LooseObject = {
+  title: "conference",
+  participants: ["john", "ann"],
+};
+
+meetup.place = room;
+room.occupiedBy = meetup;
+
+let numbers: string = "[0, 1, 2, 3, 4]";
+numbers = JSON.parse(numbers);
+// console.log(numbers);
+
+let string2: string =
+  '{"title":"Conference","date":"2017-11-30T12:00:00.000Z"}';
+
+let meetup2 = JSON.parse(string2, function (key, value) {
+  if (key == "date") return new Date(value);
+  return value;
+});
+
+// console.log(meetup2.date.getDate());
