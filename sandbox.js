@@ -1,8 +1,19 @@
-let user = {
-  name: "Anish",
-};
+function slow(x) {
+  console.log(`Function called with ${x}`);
+  return x;
+}
 
-let id = Symbol("id");
-user[id] = 1;
+function cachingDecorator(func) {
+  let cache = new Map();
 
-console.log(Object.keys(user));
+  return function (x) {
+    if (cache.has(x)) {
+      return cache.get(x);
+    }
+    let result = func(x);
+    cache.set(x, result);
+    return result;
+  };
+}
+
+slow = cachingDecorator(slow);

@@ -493,4 +493,42 @@ function inBetween(low: number, high: number): Function {
 }
 
 arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-console.log(arr.filter((value) => inBetween(3, 6)(value)));
+// console.log(arr.filter((value) => inBetween(3, 6)(value)));
+
+/* let myFunction: () => void = function (): void {
+  console.log("Hi");
+};
+
+let timerId = setTimeout(myFunction, 1000); */
+
+/* let timerId = setInterval(() => console.log("hi"), 1000);
+setTimeout(() => {
+  clearInterval(timerId);
+  console.log("stop");
+}, 5001); */
+
+type Func<T> = (x: T) => T;
+
+function cachingDecorator<T>(func: Func<T>): Func<T> {
+  let cache = new Map<T, T>();
+
+  return function (x: T): T {
+    if (cache.has(x)) {
+      return cache.get(x)!;
+    }
+    let result = func(x);
+    cache.set(x, result);
+    return result;
+  };
+}
+
+let slow: Func<number> = function (x: number): number {
+  console.log(`Function called with ${x}`);
+  return x;
+};
+
+slow = cachingDecorator(slow);
+console.log(slow(1));
+console.log(slow(1));
+console.log(slow(1));
+console.log(slow(2));
