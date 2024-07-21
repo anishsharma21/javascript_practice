@@ -528,7 +528,33 @@ let slow: Func<number> = function (x: number): number {
 };
 
 slow = cachingDecorator(slow);
-console.log(slow(1));
-console.log(slow(1));
-console.log(slow(1));
-console.log(slow(2));
+// console.log(slow(1));
+// console.log(slow(1));
+// console.log(slow(1));
+// console.log(slow(2));
+
+Object.defineProperty(user, "name", {
+  value: "John",
+  writable: false,
+});
+let descriptor = Object.getOwnPropertyDescriptor(user, "name");
+// console.log(JSON.stringify(descriptor, null, 2));
+
+let userGetterSetter = {
+  name: "John",
+  surname: "Smith",
+
+  get fullName() {
+    return `${this.name} ${this.surname}`;
+  },
+
+  set fullName(fullName: string) {
+    [this.name, this.surname] = fullName.split(" ");
+  },
+};
+
+/* console.log(userGetterSetter.fullName);
+userGetterSetter.fullName = "Anish Sharma";
+console.log(userGetterSetter.name);
+console.log(userGetterSetter.surname);
+console.log(userGetterSetter.fullName); */
