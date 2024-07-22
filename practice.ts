@@ -559,16 +559,16 @@ console.log(userGetterSetter.name);
 console.log(userGetterSetter.surname);
 console.log(userGetterSetter.fullName); */
 
-let animal = {
+/* let animal = {
   eats: true,
 };
 
-let rabbit = Object.create(animal);
+let rabbit = Object.create(animal); */
 // console.log(rabbit.eats);
 // console.log(Object.getPrototypeOf(rabbit));
-Object.setPrototypeOf(rabbit, {});
+// Object.setPrototypeOf(rabbit, {});
 
-class Animal {
+/* class Animal {
   name: string = "animal";
   noise: string = "...";
 
@@ -583,7 +583,7 @@ class Animal {
 }
 
 let dog: Animal = new Animal("Bolt", "Woof!");
-let fox: Animal = new Animal("Fox");
+let fox: Animal = new Animal("Fox"); */
 // dog.makeNoise();
 // fox.makeNoise();
 // console.log(typeof Animal);
@@ -629,6 +629,49 @@ class Clock {
   }
 }
 
-let clock: Clock = new Clock("h:m:s");
+/* let clock: Clock = new Clock("h:m:s");
 clock.start();
-setTimeout(() => clock.stop(), 5000);
+setTimeout(() => clock.stop(), 5000); */
+
+class Animal {
+  name: string;
+  speed: number;
+
+  constructor(name: string) {
+    this.name = name;
+    this.speed = 0;
+  }
+
+  run(speed: number) {
+    this.speed = speed;
+    console.log(`${this.name} runs with speed ${this.speed}`);
+  }
+
+  stop() {
+    this.speed = 0;
+    console.log(`${this.name} stands still`);
+  }
+}
+
+class Rabbit extends Animal {
+  earLength: number;
+
+  constructor(name: string, earLength: number) {
+    super(name);
+    this.earLength = earLength;
+  }
+
+  hide() {
+    console.log(`${this.name} hides`);
+  }
+
+  stop() {
+    super.stop();
+    this.hide();
+  }
+}
+
+let rabbit = new Rabbit("White Rabbit", 5);
+rabbit.run(5);
+console.log(rabbit.speed);
+rabbit.hide();
