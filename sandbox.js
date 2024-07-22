@@ -56,3 +56,18 @@ for (let prop in rabbit) {
     console.log(prop);
   }
 }
+
+function Rabbit(name) {
+  this.name = name;
+}
+
+Rabbit.prototype = animal;
+
+let newrabbit = new Rabbit("White Rabbit");
+console.log(newrabbit.eats);
+
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+}

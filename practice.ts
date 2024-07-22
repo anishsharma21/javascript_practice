@@ -558,3 +558,77 @@ userGetterSetter.fullName = "Anish Sharma";
 console.log(userGetterSetter.name);
 console.log(userGetterSetter.surname);
 console.log(userGetterSetter.fullName); */
+
+let animal = {
+  eats: true,
+};
+
+let rabbit = Object.create(animal);
+// console.log(rabbit.eats);
+// console.log(Object.getPrototypeOf(rabbit));
+Object.setPrototypeOf(rabbit, {});
+
+class Animal {
+  name: string = "animal";
+  noise: string = "...";
+
+  constructor(name: string = "animal", noise: string = "...") {
+    this.name = name;
+    this.noise = noise;
+  }
+
+  makeNoise(): void {
+    console.log(this.noise);
+  }
+}
+
+let dog: Animal = new Animal("Bolt", "Woof!");
+let fox: Animal = new Animal("Fox");
+// dog.makeNoise();
+// fox.makeNoise();
+// console.log(typeof Animal);
+// console.log(typeof dog);
+// console.log(Animal.prototype.makeNoise);
+
+class Clock {
+  timer: NodeJS.Timeout | undefined;
+  template: string;
+
+  constructor(template: string = "h:m:s") {
+    this.template = template;
+  }
+
+  render(): string {
+    let date: Date = new Date();
+
+    let hours: number | string = date.getHours();
+    if (hours < 10) hours = "0" + hours;
+
+    let mins: number | string = date.getMinutes();
+    if (mins < 10) mins = "0" + mins;
+
+    let secs: number | string = date.getSeconds();
+    if (secs < 10) secs = "0" + secs;
+
+    let output: string = this.template
+      .replace("h", () => hours.toString())
+      .replace("m", () => mins.toString())
+      .replace("s", () => secs.toString());
+
+    console.log(output);
+    return output;
+  }
+
+  stop() {
+    if (this.timer) clearInterval(this.timer);
+  }
+
+  start() {
+    this.render();
+    this.timer = setInterval(this.render.bind(this), 1000);
+  }
+}
+
+let clock: Clock = new Clock("h:m:s");
+clock.start();
+setTimeout(() => clock.stop(), 5000);
