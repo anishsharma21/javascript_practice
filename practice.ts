@@ -672,6 +672,39 @@ class Rabbit extends Animal {
 }
 
 let rabbit = new Rabbit("White Rabbit", 5);
-rabbit.run(5);
+/* rabbit.run(5);
 console.log(rabbit.speed);
-rabbit.hide();
+rabbit.hide(); */
+
+class CoffeeMachine {
+  #waterLimit: number = 100;
+  private _waterAmount: number = 0;
+  private _power: number;
+
+  constructor(power: number) {
+    this._power = power;
+    console.log(`Created a coffee machine with ${power}W power.`);
+  }
+
+  #fixWaterAmount(value: number) {
+    if (value < 0) return 0;
+    if (value > this.#waterLimit) return this.#waterLimit;
+    return value;
+  }
+
+  setWaterAmount(value: number) {
+    this.#waterLimit = this.#fixWaterAmount(value);
+  }
+
+  get waterAmount() {
+    return this._waterAmount;
+  }
+
+  get power() {
+    return this._power;
+  }
+}
+
+let coffeeMachine = new CoffeeMachine(100);
+coffeeMachine.setWaterAmount(50);
+console.log(coffeeMachine.waterAmount);
