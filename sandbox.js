@@ -71,3 +71,10 @@ class Animal {
     this.name = name;
   }
 }
+
+try {
+  JSON.parse("{bad JSON}");
+} catch (err) {
+  console.log(err.name);
+  console.log(err.message);
+}

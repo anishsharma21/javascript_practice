@@ -705,6 +705,84 @@ class CoffeeMachine {
   }
 }
 
-let coffeeMachine = new CoffeeMachine(100);
-coffeeMachine.setWaterAmount(50);
-console.log(coffeeMachine.waterAmount);
+// let coffeeMachine = new CoffeeMachine(100);
+// coffeeMachine.setWaterAmount(50);
+// console.log(coffeeMachine.waterAmount);
+
+let sayMixIn = {
+  sayHi() {
+    console.log("HI");
+  },
+  sayBye() {
+    console.log("BYE");
+  },
+};
+
+class Individual {
+  name: string;
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+Object.assign(Individual.prototype, sayMixIn);
+
+let error = new Error("Things happen o_O");
+// console.log(error.name);
+// console.log(error.message);
+
+let json2 = '{"name": "anish", age" 20}';
+
+/* try {
+  let user = JSON.parse(json2);
+  if (!user.surname) {
+    throw new SyntaxError("Surname field does not exist on user");
+  }
+  console.log(user);
+} catch (err) {
+  if (err instanceof SyntaxError) {
+    console.log(`JSON error: ${err}`);
+  } else {
+    console.log(err);
+  }
+} */
+
+/* let promise = new Promise((resolve, reject) => {
+  setTimeout(() => resolve("done"), 1000);
+  // setTimeout(() => reject(new Error("Whoops")), 1000);
+})
+  .then((result) => console.log(result))
+  .catch((error) => console.log(error)); */
+
+/* function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+delay(3000).then(() => console.log("runs after 3 seconds")); */
+
+let promise = new Promise<number>(function (resolve) {
+  setTimeout(() => resolve(1), 1000);
+})
+  .then((result) => {
+    console.log(result * 2);
+    return ++result;
+  })
+  .then((result) => {
+    setTimeout(() => console.log(result * 2), 1000);
+  });
+
+/* promise.then(function (result) {
+  console.log(result); // 1
+});
+
+promise.then(function (result) {
+  console.log(result); // 1
+});
+
+promise.then(function (result) {
+  console.log(result); // 1
+}); */
+
+fetch("/example/url")
+  .then((response) => response.json())
+  .then((user) => alert(user.name));
